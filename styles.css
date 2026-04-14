@@ -1,0 +1,717 @@
+ @font-face {
+  font-family: 'PP Neue York';
+  src: url('ppneueyork-narrowlight-webfont.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PP Neue York';
+  src: url('ppneueyork-narrowmedium-webfont.woff2.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+ 
+ :root {
+    --forest: #2a5c4e;
+    --deep:   #1e4438;
+    --deeper: #163328;
+    --mint:   #5ecfb0;
+    --mint2:  #3db897;
+    --pale:   #d4ede6;
+    --muted:  #7aaa98;
+    --white:  #f0faf6;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deep);
+    color: var(--white);
+    font-family: 'PP Neue York', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Cursor */
+  .cursor {
+    width: 10px; height: 10px;
+    background: var(--mint);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    width: 38px; height: 38px;
+    border: 1px solid var(--mint);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
+    transition: width 0.3s, height 0.3s, opacity 0.3s;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 5px;
+    padding-left: 28px;
+    padding-right: 28px;
+    padding-top: 56px;
+    background: var(--deeper);
+  }
+  .nav-logo {
+    margin-top: 15px;
+  }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--mint); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 140px 56px 80px;
+    overflow: hidden;
+    background: var(--deeper);
+  }
+
+  .hero-bg-d {
+    position: absolute;
+    right: -80px;
+    bottom: -60px;
+    font-family: 'PP Neue York', sans-serif;
+    font-weight: 800;
+    font-size: clamp(280px, 45vw, 520px);
+    color: var(--forest);
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+    letter-spacing: -0.04em;
+    opacity: 0;
+    animation: fadeIn 1.2s ease 0.8s forwards;
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 700px; }
+
+  .hero-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--mint);
+    margin-bottom: 28px;
+    font-weight: 500;
+    display: flex; align-items: center; gap: 14px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.2s forwards;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 28px; height: 1px;
+    background: var(--mint);
+  }
+
+  .hero-title {
+    font-family: 'PP Neue York', sans-serif;
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.35s forwards;
+  }
+
+  .hero-title-sub {
+    font-family: 'PP Neue York', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 3.2rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--mint);
+    line-height: 1;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.5s forwards;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--muted);
+    max-width: 460px;
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.65s forwards;
+  }
+
+  .hero-cta {
+    display: flex; gap: 20px; align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.8s forwards;
+  }
+
+  .btn-primary {
+    background: var(--mint);
+    color: var(--deeper);
+    padding: 15px 36px;
+    font-family: 'PP Neue York', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--mint2); transform: translateY(-2px); }
+
+  .btn-ghost {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--forest);
+    padding-bottom: 3px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--white); border-color: var(--muted); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 44px; left: 56px;
+    display: flex; align-items: center; gap: 14px;
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0;
+    animation: fadeIn 0.7s ease 1.2s forwards;
+  }
+  .scroll-line {
+    width: 44px; height: 1px;
+    background: var(--forest);
+    position: relative; overflow: hidden;
+  }
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: var(--mint);
+    animation: scrollLine 2.2s ease-in-out infinite;
+  }
+  @keyframes scrollLine { 0%{left:-100%} 100%{left:100%} }
+
+  /* MARQUEE */
+  .marquee-strip {
+    background: var(--forest);
+    padding: 13px 0;
+    overflow: hidden; white-space: nowrap;
+  }
+  .marquee-inner {
+    display: inline-flex;
+    animation: marquee 20s linear infinite;
+  }
+  .marquee-item {
+    font-family: 'PP Neue York', sans-serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--pale);
+    padding: 0 44px;
+  }
+  .marquee-dot { color: var(--mint); font-style: normal; }
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* SECTION SHARED */
+  .section-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--mint);
+    margin-bottom: 48px;
+    font-weight: 500;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .section-label::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--mint);
+  }
+
+  /* ABOUT */
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--forest);
+  }
+
+  .about-left {
+    padding: 100px 56px;
+    border-right: 1px solid var(--forest);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-heading {
+    font-family: 'PP Neue York', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 32px;
+  }
+  .about-heading em { font-style: italic; color: var(--mint); }
+
+  .about-text {
+    font-size: 0.92rem;
+    line-height: 1.9;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .about-text strong { color: var(--pale); font-weight: 500; }
+
+  .about-right {
+    padding: 100px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--forest);
+    border: 1px solid var(--forest);
+    margin-bottom: 52px;
+  }
+
+  .stat-item {
+    background: var(--deep);
+    padding: 36px 28px;
+    transition: background 0.2s;
+  }
+  .stat-item:hover { background: var(--forest); }
+
+  .stat-number {
+    font-family: ''PP Neue York', sans-serif;
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-number span { color: var(--mint); }
+
+  .stat-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .skills-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 7px 16px;
+    border: 1px solid var(--forest);
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+  .skill-tag:hover { border-color: var(--mint); color: var(--mint); }
+
+  /* SERVICES */
+  .services {
+    border-top: 1px solid var(--forest);
+    padding: 100px 56px;
+    background: var(--deeper);
+  }
+
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 64px;
+  }
+
+  .services-title {
+    font-family: 'PP Neue York', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 0.95;
+  }
+  .services-title em { font-style: italic; color: var(--mint); display: block; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--forest);
+    border: 1px solid var(--forest);
+  }
+
+  .service-card {
+    background: var(--deeper);
+    padding: 52px 44px;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--mint);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .service-card:hover { background: var(--deep); }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-number {
+    font-family: ''PP Neue York', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--forest);
+    line-height: 1;
+    margin-bottom: 28px;
+    transition: color 0.3s;
+  }
+  .service-card:hover .service-number { color: var(--mint); opacity: 0.4; }
+
+  .service-name {
+    font-family: ''PP Neue York', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    line-height: 1.2;
+    color: var(--white);
+  }
+
+  .service-desc {
+    font-size: 0.88rem;
+    line-height: 1.85;
+    color: var(--muted);
+  }
+
+  /* WORK */
+  .work {
+    border-top: 1px solid var(--forest);
+    padding: 100px 56px;
+  }
+
+  .work-list { display: flex; flex-direction: column; }
+
+  .work-item {
+    display: grid;
+    grid-template-columns: 72px 1fr auto auto;
+    align-items: center;
+    gap: 32px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--forest);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .work-item:first-child { border-top: 1px solid var(--forest); }
+  .work-item:hover .work-title { color: var(--mint); }
+  .work-item:hover .work-arrow { transform: translateX(6px); color: var(--mint); }
+
+  .work-index {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .work-title {
+    font-family: ''PP Neue York', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--white);
+    transition: color 0.2s;
+  }
+
+  .work-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--muted);
+    border: 1px solid var(--forest);
+    padding: 6px 14px;
+  }
+
+  .work-arrow {
+    font-size: 1rem;
+    color: var(--forest);
+    transition: all 0.2s;
+  }
+
+  /* CARDU BRIDGE */
+  .cardu-bridge {
+    border-top: 1px solid var(--forest);
+    background: var(--forest);
+    padding: 80px 56px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .bridge-left {}
+
+  .bridge-heading {
+    font-family: ''PP Neue York', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .bridge-heading em { font-style: italic; color: var(--mint); }
+
+  .bridge-text {
+    font-size: 0.92rem;
+    line-height: 1.9;
+    color: var(--pale);
+    opacity: 0.7;
+    margin-bottom: 32px;
+  }
+
+  .bridge-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--mint);
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .bridge-link:hover { gap: 20px; }
+
+  .bridge-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cardu-logo-display {
+    font-family: 'PP Neue York', sans-serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-style: italic;
+    font-weight: 600;
+    color: var(--pale);
+    /*opacity: 0.5;*/
+    letter-spacing: -0.02em;
+    text-align: center;
+    line-height: 1;
+    position: relative;
+  }
+  .cardu-logo-display .cardu-logo-png {
+    margin-bottom: 4px;
+    background-color: whitesmoke;
+  }
+  .cardu-logo-display span {
+    display: block;
+    font-family: 'Manrope', sans-serif;
+    font-style: normal;
+    font-size: 0.65rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--mint);
+    opacity: 1;
+    margin-top: 12px;
+    font-weight: 500;
+  }
+
+  /* CONTACT */
+  .contact {
+    border-top: 1px solid var(--forest);
+    background: var(--deeper);
+    padding: 100px 56px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+
+  .contact-title {
+    font-family: ''PP Neue York', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 0.95;
+    margin-bottom: 32px;
+  }
+  .contact-title em { font-style: italic; color: var(--mint); display: block; }
+
+  .contact-text {
+    font-size: 0.92rem;
+    line-height: 1.9;
+    color: var(--muted);
+    margin-bottom: 44px;
+  }
+
+  /* Business card style contact */
+  .biz-card {
+    background: var(--forest);
+    padding: 48px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .biz-card-d {
+    position: absolute;
+    left: -24px; top: -20px;
+    font-family: 'PP Neue York', sans-serif;
+    font-weight: 800;
+    font-size: 180px;
+    color: var(--deep);
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .biz-card-content { position: relative; z-index: 2; }
+
+  .biz-name {
+    font-family: 'PP Neue York', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .biz-title {
+    font-size: 0.85rem;
+    color: var(--mint);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    margin-bottom: 36px;
+  }
+
+  .biz-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .biz-detail {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    text-decoration: none;
+  }
+
+  .biz-detail-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    width: 44px;
+    flex-shrink: 0;
+  }
+
+  .biz-detail-value {
+    font-size: 0.9rem;
+    color: var(--pale);
+    transition: color 0.2s;
+  }
+  .biz-detail:hover .biz-detail-value { color: var(--mint); }
+
+  /* FOOTER */
+  footer {
+    background: var(--deeper);
+    border-top: 1px solid var(--forest);
+    padding: 24px 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-family: 'PP Neue York', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: var(--muted);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .footer-logo span { color: var(--mint); }
+
+  .footer-copy {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--forest);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 120px 24px 60px; }
+    .hero-bg-d { font-size: 200px; right: -40px; bottom: -20px; }
+    .about, .contact, .cardu-bridge { grid-template-columns: 1fr; }
+    .about-left { border-right: none; border-bottom: 1px solid var(--forest); padding: 60px 24px; }
+    .about-right { padding: 60px 24px; }
+    .services { padding: 60px 24px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .services-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .work { padding: 60px 24px; }
+    .work-item { grid-template-columns: 44px 1fr auto; gap: 16px; }
+    .work-tag { display: none; }
+    .contact { padding: 60px 24px; gap: 44px; }
+    .cardu-bridge { padding: 60px 24px; gap: 40px; }
+    footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+  }
