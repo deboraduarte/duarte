@@ -317,7 +317,7 @@
   .stat-item:hover { background: var(--forest); }
 
   .stat-number {
-    font-family: ''PP Neue York', sans-serif;
+    font-family: 'PP Neue York', sans-serif;
     font-size: 3.2rem;
     font-weight: 700;
     color: var(--white);
@@ -398,7 +398,7 @@
   .service-card:hover::before { transform: scaleX(1); }
 
   .service-number {
-    font-family: ''PP Neue York', sans-serif;
+    font-family: 'PP Neue York', sans-serif;
     font-size: 3.5rem;
     font-weight: 700;
     color: var(--forest);
@@ -409,7 +409,7 @@
   .service-card:hover .service-number { color: var(--mint); opacity: 0.4; }
 
   .service-name {
-    font-family: ''PP Neue York', sans-serif;
+    font-family: 'PP Neue York', sans-serif;
     font-size: 1.6rem;
     font-weight: 600;
     margin-bottom: 16px;
@@ -453,7 +453,7 @@
   }
 
   .work-title {
-    font-family: ''PP Neue York', sans-serif;
+    font-family: 'PP Neue York', sans-serif;
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--white);
@@ -490,7 +490,7 @@
   .bridge-left {}
 
   .bridge-heading {
-    font-family: ''PP Neue York', sans-serif;
+    font-family: 'PP Neue York', sans-serif;
     font-size: clamp(2rem, 3.5vw, 3rem);
     font-weight: 700;
     line-height: 1.1;
@@ -566,7 +566,7 @@
   }
 
   .contact-title {
-    font-family: ''PP Neue York', sans-serif;
+    font-family: 'PP Neue York', sans-serif;
     font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 700;
     line-height: 0.95;
@@ -697,10 +697,10 @@
   }
 
   /* RESPONSIVE */
-  @media (max-width: 768px) {
-    nav { padding: 20px 24px; }
+  @media (max-width: 768px) {   
+    nav {  padding-left: 20px; padding-right: 20px;padding-top:10px;}
     .nav-links { display: none; }
-    .hero { padding: 120px 24px 60px; }
+    .hero { padding: 130px 24px 60px; }
     .hero-bg-d { font-size: 200px; right: -40px; bottom: -20px; }
     .about, .contact, .cardu-bridge { grid-template-columns: 1fr; }
     .about-left { border-right: none; border-bottom: 1px solid var(--forest); padding: 60px 24px; }
