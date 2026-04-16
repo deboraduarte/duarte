@@ -140,6 +140,81 @@
   </div>
 </section>
 
+<script>
+const projects = {
+  deezer: {
+    label: 'Digital Marketing · Brazil · 2017',
+    title: 'Deezer Brazil Market Launch',
+    role: 'Digital Marketing Manager · NOIZE Media / Cadastra',
+    body: `As Digital Marketing Manager at NOIZE Media, I led the paid social and paid digital marketing strategy for Deezer's entry into the Brazilian market — one of the most competitive streaming markets in Latin America at the time.\n\nWorking alongside the Creative Manager, we built the full go-to-market strategy together with Deezer's in-house team. My focus was coordinating the budget allocation, defining the performance metrics, and deciding where to invest across paid channels. Together we positioned Deezer as a genuine challenger to Spotify in Brazil.\n\nThe campaign contributed to Deezer's growth in a market where local cultural understanding was the key differentiator.`,
+    tags: ['Paid Social', 'Paid Digital', 'Budget Management', 'Performance Marketing', 'Market Strategy'],
+    link: 'https://forbes.com.br/negocios/2017/09/deezer-busca-vantagem-sobre-o-spotify-no-mercado-musical/',
+    linkLabel: 'Press coverage — Forbes Brasil →'
+  },
+  anitta: {
+    label: 'Campaign Direction · International · 2017',
+    title: 'Anitta — Paradinha International Campaign',
+    role: 'Digital Marketing Manager · NOIZE Media / Cadastra',
+    body: `As Digital Marketing Manager at NOIZE Media, I coordinated the digital launch strategy for Paradinha — Anitta's first fully international YouTube campaign, designed to break her into the global Latin market.\n\nI worked directly with the Google team to plan and execute the YouTube ads strategy, and monitored the campaign performance in real time on launch day — optimising placements and spend as the video went live.\n\nParadinha reached 100 million views in under two months, becoming a landmark moment in Brazilian pop music's international expansion.`,
+    tags: ['YouTube Advertising', 'Google Ads', 'Campaign Management', 'Real-time Optimisation', 'Latin Market'],
+    link: 'https://portalpopline.com.br/paradinha-anitta-bate-100-milhoes-de-acessos-em-menos-de-dois-meses/',
+    linkLabel: '100M views coverage — Portal Popline →'
+  },
+  cadastra: {
+    label: 'Digital Marketing · Brazil · Agency',
+    title: 'Brand Campaigns — Cadastra Agency',
+    role: 'Digital Marketing Intern → Junior Manager',
+    body: `My foundation in digital marketing was built at Cadastra, one of Brazil's leading digital agencies. Starting as an intern, I gained hands-on experience across the full digital marketing stack — learning strategy, operations, analytics and client management simultaneously.\n\nMy biggest account was Livraria Cultura, one of Brazil's most iconic bookstore chains. I also independently managed the Samsung Brazil e-commerce ads campaign, and led the full digital advertising campaign for Fundação Abrinq — a major Brazilian children's rights foundation — from briefing to delivery, entirely solo.`,
+    tags: ['Performance Marketing', 'E-commerce', 'Google Ads', 'Meta Ads', 'Client Management'],
+    link: null,
+    linkLabel: null
+  },
+  camila: {
+    label: 'Brand Identity · Fashion · 2024',
+    title: 'Camila Wolff — Full Brand Rebrand',
+    role: 'Brand Designer & Creative Director · CarDu Studio',
+    body: `Complete brand identity system for Camila Wolff, a Brazilian-based fashion designer. The project covered every touchpoint of the brand from the ground up.\n\nDeliverables included logo creation, brand vision and positioning, full brand guidelines, stationery design (business cards, letterhead), and a consistent social media visual system — giving Camila a cohesive, professional identity that reflected the elegance and precision of her work as a designer.`,
+    tags: ['Logo Design', 'Brand Identity', 'Brand Guidelines', 'Stationery', 'Social Media Design'],
+    link: 'https://www.behance.net/gallery/218545941/Camila-Wolff',
+    linkLabel: 'View full project on Behance →'
+  },
+  depot: {
+    label: 'Visual Merchandising · Munich · Current',
+    title: 'Depot — Visual Merchandising',
+    role: 'Visual Merchandiser · Depot Munich',
+    body: `Working alongside the store manager and sub-manager at Depot Munich, I contribute to the visual strategy and spatial organisation of the store — creating displays and layouts that are both aesthetically compelling and commercially effective.\n\nThe role combines following the brand's visual guidelines with observing what actually performs in-store and making suggestions to improve the customer experience. It's where my design instincts meet real-world retail — understanding how people move through a space and respond to visual composition.`,
+    tags: ['Visual Merchandising', 'Retail Design', 'Space Organisation', 'Brand Guidelines', 'Customer Experience'],
+    link: null,
+    linkLabel: null
+  }
+};
+
+function openModal(id) {
+  const p = projects[id];
+  const linksHtml = p.link ? `<a href="${p.link}" target="_blank" rel="noopener" class="modal-link">${p.linkLabel}</a>` : '';
+  const tagsHtml = p.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
+  const bodyHtml = p.body.split('\n\n').map(para => `<p class="modal-body">${para}</p>`).join('');
+
+  document.getElementById('modal-content').innerHTML = `
+    <div class="modal-label">${p.label}</div>
+    <h2 class="modal-title">${p.title}</h2>
+    <div class="modal-role">${p.role}</div>
+    ${bodyHtml}
+    <div class="modal-tags">${tagsHtml}</div>
+    ${linksHtml}
+  `;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+
 <!-- WORK -->
 <section class="work" id="work">
   <div class="work-header reveal">
@@ -147,31 +222,31 @@
     <h2 class="services-title">Featured<br><em>projects.</em></h2>
   </div>
   <div class="work-list">
-    <div class="work-item reveal">
+    <div class="work-item reveal" onclick="openModal('deezer')">
       <span class="work-index">001</span>
       <span class="work-title">Deezer Brazil Market Launch</span>
       <span class="work-tag">Market Strategy</span>
       <span class="work-arrow">→</span>
     </div>
-    <div class="work-item reveal">
+    <div class="work-item reveal" onclick="openModal('anitta')">
       <span class="work-index">002</span>
       <span class="work-title">Anitta — Paradinha International Campaign</span>
       <span class="work-tag">Campaign Direction</span>
       <span class="work-arrow">→</span>
     </div>
-    <div class="work-item reveal">
+    <div class="work-item reveal" onclick="openModal('cadastra')">
       <span class="work-index">003</span>
       <span class="work-title">Brand Campaigns — Cadastra Agency</span>
       <span class="work-tag">Digital Marketing</span>
       <span class="work-arrow">→</span>
     </div>
-    <div class="work-item reveal">
+    <div class="work-item reveal" onclick="openModal('camila')">
       <span class="work-index">004</span>
       <span class="work-title">Visual Identity Projects</span>
       <span class="work-tag">Brand Design</span>
       <span class="work-arrow">→</span>
     </div>
-    <div class="work-item reveal">
+    <div class="work-item reveal" onclick="openModal('depot')">
       <span class="work-index">005</span>
       <span class="work-title">Social Media — Depot Visual Merchandising</span>
       <span class="work-tag">Content & Visual</span>
@@ -179,6 +254,29 @@
     </div>
   </div>
 </section>
+
+<!-- MODALS -->
+<div id="modal-overlay" onclick="closeModal()" style="display:none;position:fixed;inset:0;background:rgba(22,51,40,0.92);z-index:500;align-items:center;justify-content:center;padding:24px;">
+  <div id="modal-box" onclick="event.stopPropagation()" style="background:var(--deep);max-width:640px;width:100%;max-height:90vh;overflow-y:auto;position:relative;border:1px solid var(--forest);">
+    <button onclick="closeModal()" style="position:sticky;top:0;float:right;background:var(--forest);border:none;color:var(--mint);font-size:1.2rem;width:44px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;">✕</button>
+    <div id="modal-content" style="padding:48px;clear:both;"></div>
+  </div>
+</div>
+
+<style>
+#modal-overlay { display: none; }
+#modal-overlay.open { display: flex !important; }
+.modal-label { font-family:'Manrope',sans-serif; font-size:0.6rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--mint); margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+.modal-label::before { content:''; width:20px; height:1px; background:var(--mint); }
+.modal-title { font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:700; color:var(--white); margin-bottom:8px; line-height:1.1; }
+.modal-role { font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin-bottom:28px; padding-bottom:28px; border-bottom:1px solid var(--forest); }
+.modal-body { font-size:0.9rem; line-height:1.85; color:rgba(240,250,246,0.7); margin-bottom:24px; }
+.modal-body strong { color:var(--white); font-weight:500; }
+.modal-tags { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:32px; }
+.modal-tag { font-size:0.58rem; letter-spacing:0.12em; text-transform:uppercase; padding:5px 14px; border:1px solid var(--forest); color:var(--muted); }
+.modal-link { display:inline-flex; align-items:center; gap:10px; font-family:'Manrope',sans-serif; font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mint); text-decoration:none; border-bottom:1px solid var(--forest); padding-bottom:3px; transition:border-color 0.2s; }
+.modal-link:hover { border-color:var(--mint); }
+</style>
 
 <!-- CARDU BRIDGE -->
 <section class="cardu-bridge">
